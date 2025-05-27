@@ -9,17 +9,17 @@ public class UIBase : MonoBehaviour
 {
     protected Dictionary<Type, UnityEngine.Object[]> _objects = new Dictionary<Type, UnityEngine.Object[]>();
 
-    protected bool _init = false;
+    protected bool init = false;
 
     public virtual bool Initialized()
     {
-        if (_init)
+        if (init)
         {
             return false;
         }
-        _init = true;
+        init = true;
         
-        return _init;
+        return init;
     }
 
     private void Start()
