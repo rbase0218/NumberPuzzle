@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class UIScreen : UIBase
 {
-    // UI Window는 이미 UIScreen의 Prefab 안에 포함되어 있다.
     private Dictionary<Type, UIWindow> _windowDic = new Dictionary<Type, UIWindow>();
     
     // 현재 Screen이 몇번째 순서인가.
@@ -22,20 +21,22 @@ public class UIScreen : UIBase
         return true;
     }
 
-    public T ShowWindow<T>() where T : UIWindow
+    public T ShowWindow<T>(string name = null) where T : UIWindow
     {
         T component = null;
         if (_windowDic.ContainsKey(typeof(T)))
         {
             component = _windowDic[typeof(T)] as T;
-            component?.gameObject.SetActive(true);
-            
-            component?.Initialized();
         }
         else
         {
-            Debug.LogError($"{typeof(T).Name}은 존재하지 않습니다.");
+            // 생성할 필요 없이, 하단에 있는 컴포넌트를 찾으면 된다.
+            component = Utils.FindChild<T>(gameObject, name, true);
+            _windowDic.TryAdd(typeof(T), component);
         }
+        
+        component?.gameObject.SetActive(true);
+        component?.Initialized();
         
         return component;
     }
