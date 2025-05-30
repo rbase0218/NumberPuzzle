@@ -1,16 +1,18 @@
 using UnityEngine;
 
-public class GameScene : MonoBehaviour
+public class GameScene : SceneBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private MapManager mapManager;
+    
+    protected override bool Initialized()
     {
-        
-    }
+        if (base.Initialized() == false)
+            return false;
 
-    // Update is called once per frame
-    void Update()
-    {
+        // 데이터는 나중에 S.O 데이터로 연결하기
+        mapManager.GenerateMap(4, 4, 4);
+        Managers.Instance.uiManager.ShowScreen<UIGameScreen>();
         
+        return true;
     }
 }

@@ -1,16 +1,13 @@
 using UnityEngine;
 
-public class TitleScene : MonoBehaviour
+public class TitleScene : SceneBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override bool Initialized()
     {
-        
-    }
+        if (base.Initialized() == false)
+            return false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Managers.Instance.uiManager.ShowScreen<UITitleScreen>();
+        return true;
     }
 }

@@ -41,6 +41,8 @@ public class Managers : MonoBehaviour
     }
 
     private bool initialized = false;
+
+    public UIManager uiManager = new UIManager();
     
     private void Initialized()
     {

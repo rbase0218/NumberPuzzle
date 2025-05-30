@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager
 {
     private const string UIPath = @"Prefab/UI/Screen/";
     private const string UIRoot = "UI_Root";
@@ -55,7 +55,7 @@ public class UIManager : MonoBehaviour
         else
         {
             GameObject gameObj = Resources.Load<GameObject>(UIPath + name);
-            GameObject ui = Instantiate(gameObj, Root.transform, true);
+            GameObject ui = GameObject.Instantiate(gameObj, Root.transform, true);
 
             component = Utils.TryGetOrAdd<T>(ui);
             _screenDic.TryAdd(typeof(T), component);
