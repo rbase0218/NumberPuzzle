@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIGrid : UIWindow
+public class UIGridWindow : UIWindow
 {
     private UICell[,] _cells;
     private GameObject _cellPrefab;
